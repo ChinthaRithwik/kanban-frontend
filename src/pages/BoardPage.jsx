@@ -239,14 +239,16 @@ const BoardPage = () => {
               <span className="hidden sm:inline">Activity</span>
             </button>
 
-            <button
-              onClick={() => setSettingsOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm
-                font-semibold text-gray-600 hover:bg-gray-100 border border-gray-200 transition-all"
-            >
-              <Settings size={15} />
-              <span className="hidden sm:inline">Settings</span>
-            </button>
+            {isAdmin && (
+              <button
+                onClick={() => setSettingsOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm
+                  font-semibold text-gray-600 hover:bg-gray-100 border border-gray-200 transition-all"
+              >
+                <Settings size={15} />
+                <span className="hidden sm:inline">Settings</span>
+              </button>
+            )}
           </div>
         </div>
 

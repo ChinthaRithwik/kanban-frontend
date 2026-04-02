@@ -201,8 +201,9 @@ const DashboardPage = () => {
       await deleteBoard(deleteTarget.id);
       setBoards(prev => prev.filter(b => b.id !== deleteTarget.id));
       success(`Board "${deleteTarget.name}" deleted`);
-    } catch {
-      toastError('Failed to delete board.');
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Failed to delete board.';
+      toastError(msg);
     } finally {
       setDeleting(false);
       setDeleteTarget(null);

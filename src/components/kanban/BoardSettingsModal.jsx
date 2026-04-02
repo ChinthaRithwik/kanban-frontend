@@ -37,8 +37,9 @@ const BoardSettingsModal = ({ isOpen, board, onClose, onBoardUpdated, onBoardDel
       onBoardUpdated?.({ ...board, name: name.trim() });
       success(`Board renamed to "${name.trim()}"`);
       onClose();
-    } catch {
-      toastError('Failed to update board.');
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Failed to update board.';
+      toastError(msg);
     } finally {
       setSaving(false);
     }
@@ -50,8 +51,9 @@ const BoardSettingsModal = ({ isOpen, board, onClose, onBoardUpdated, onBoardDel
       await deleteBoard(board.id);
       success('Board deleted');
       onBoardDeleted?.();
-    } catch {
-      toastError('Failed to delete board.');
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Failed to delete board.';
+      toastError(msg);
     } finally {
       setDeleting(false);
       setDeleteConfirm(false);
